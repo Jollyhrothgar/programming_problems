@@ -1,0 +1,42 @@
+# .gitignore for Python Projects
+
+# --- Python ---
+# Byte-compiled / optimized / C extensions
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environments ---
+# Common names for virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# --- Testing ---
+# Pytest cache and coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- IDEs and Editors ---
+# Visual Studio Code
+.vscode/
+
+# JetBrains (PyCharm, etc.)
+.idea/
+
+# --- Operating System Files ---
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# --- Build and Distribution ---
+# Not strictly needed for LeetCode, but good practice
+build/
+dist/
+*.egg-info/
+
