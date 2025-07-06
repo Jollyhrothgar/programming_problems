@@ -1,6 +1,3 @@
-# import sys
-# sys.path.append('.')
-
 from linked_list_cycle_leetcode_141.linked_list_cycle import has_cycle
 from lib.linked_list_tools import ListNode
 from lib.linked_list_tools import create_linked_list_with_cycle
