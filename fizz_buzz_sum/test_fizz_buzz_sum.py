@@ -1,8 +1,8 @@
 """Test cases for fizz_buzz_sum."""
 
 
-from . import fizz_buzz_sum as original_solution
-from . import fizz_buzz_sum_optimal as optimal_solution
+from . import solution as original_solution
+from . import optimal_solution as optimal_solution
 
 def test_fizz_buzz_sum():
   assert original_solution.fizz_buzz_sum(0)  == 0

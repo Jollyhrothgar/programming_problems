@@ -19,7 +19,7 @@ linked using pointers. Each node contains data and a reference (or link) to the 
 sequence.
 
 -   **[Linked List Cycle Detection](./linked_list_cycle_leetcode_141/)**: An example of identifying
-    cycles using the fast and slow pointer technique.
+    cycles using a hash set to track visited nodes.
 
 ### Hash Sets
 
@@ -37,3 +37,8 @@ highly efficient (average O(1) time complexity) lookups, insertions, and deletio
 A method for solving complex problems by breaking them down into simpler, overlapping subproblems. Results of subproblems are stored (memoized) to avoid redundant calculations.
 
 -   **[Fizz Buzz Sum](./fizz_buzz_sum/)**: A bottom-up dynamic programming approach to build a solution iteratively.
+
+### Two Pointers
+A pattern that uses two pointers to iterate through a data structure, often at different speeds, until they meet a certain condition.
+
+-   **[Linked List Cycle Detection](./linked_list_cycle_leetcode_141/)**: The optimal solution for this problem uses a fast and slow pointer to detect a cycle in O(1) memory.

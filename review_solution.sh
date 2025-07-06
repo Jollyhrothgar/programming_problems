@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# A script to display a LeetCode problem, solution, tests, and notes for review.
+# A script to display a LeetCode problem, all associated solutions,
+# and all test files for a comprehensive review.
 
 # --- 1. Input Validation ---
 # Check if exactly one argument (the directory) was provided.
@@ -11,7 +12,6 @@ fi
 
 # Assign the first argument to a variable for clarity.
 SOLUTION_DIR=$1
-BASENAME=$(basename "$SOLUTION_DIR")
 
 # Check if the provided argument is actually a directory.
 if [ ! -d "$SOLUTION_DIR" ]; then
@@ -19,51 +19,80 @@ if [ ! -d "$SOLUTION_DIR" ]; then
   exit 1
 fi
 
-# --- 2. File Path Construction ---
-# Construct the paths to the README, solution, and test files.
-# This assumes a consistent naming convention.
-README_FILE="$SOLUTION_DIR/README.md"
-SOLUTION_FILE="$SOLUTION_DIR/$BASENAME.py"
-TEST_FILE="$SOLUTION_DIR/test_$BASENAME.py"
-
-# Check if the required files exist before trying to read them.
-if [ ! -f "$README_FILE" ]; then
-  echo "Error: README.md not found in '$SOLUTION_DIR'."
-  exit 1
-fi
-
-if [ ! -f "$SOLUTION_FILE" ]; then
-  echo "Error: Solution file '$SOLUTION_FILE' not found."
-  exit 1
-fi
-
-if [ ! -f "$TEST_FILE" ]; then
-  echo "Error: Test file '$TEST_FILE' not found."
-  exit 1
-fi
-
-# --- 3. Output Formatting ---
+# --- 2. Output Formatting & README ---
 # Clear the screen for a clean view.
 clear
 
-# Print the formatted output.
 echo "=================================================="
-echo "Here's my solution for: $BASENAME"
+echo "Here's my solution for: $(basename "$SOLUTION_DIR")"
 echo "=================================================="
 echo ""
 echo "--- Question ---"
-# Use cat to print the contents of the README file.
-cat "$README_FILE"
+
+README_FILE="$SOLUTION_DIR/README.md"
+if [ -f "$README_FILE" ]; then
+  cat "$README_FILE"
+else
+  echo "README.md not found."
+fi
 echo ""
+
+# --- 3. Find and Display All Solutions ---
+# This section dynamically finds any file starting with 'solution'.
+echo "--- Solutions ---"
+solution_found=false
+# Loop through all files matching the 'solution*.py' pattern.
+for file in "$SOLUTION_DIR"/solution*.py; do
+  # The check '[ -f "$file" ]' is crucial. If no files match the pattern,
+  # the loop will still run once with the literal string. This check prevents that.
+  if [ -f "$file" ]; then
+    echo ""
+    echo "## File: $(basename "$file")"
+    echo "--------------------------------------------------"
+    cat "$file"
+    solution_found=true
+  fi
+done
+
+if ! $solution_found; then
+  echo "No standard solution files (solution*.py) found."
+fi
 echo ""
-echo "--- Solution ---"
-# Use cat to print the contents of the Python solution file.
-cat "$SOLUTION_FILE"
+
+# --- 4. Find and Display All Optimal Solutions ---
+echo "--- Optimal Solutions ---"
+optimal_found=false
+for file in "$SOLUTION_DIR"/optimal_solution*.py; do
+  if [ -f "$file" ]; then
+    echo ""
+    echo "## File: $(basename "$file")"
+    echo "--------------------------------------------------"
+    cat "$file"
+    optimal_found=true
+  fi
+done
+
+if ! $optimal_found; then
+  echo "No optimal solution files (optimal_solution*.py) found."
+fi
 echo ""
-echo ""
+
+# --- 5. Find and Display All Test Files ---
 echo "--- Tests ---"
-# Use cat to print the contents of the Python test file.
-cat "$TEST_FILE"
+tests_found=false
+for file in "$SOLUTION_DIR"/test_*.py; do
+  if [ -f "$file" ]; then
+    echo ""
+    echo "## File: $(basename "$file")"
+    echo "--------------------------------------------------"
+    cat "$file"
+    tests_found=true
+  fi
+done
+
+if ! $tests_found; then
+  echo "No test files (test_*.py) found."
+fi
 echo ""
 
 
