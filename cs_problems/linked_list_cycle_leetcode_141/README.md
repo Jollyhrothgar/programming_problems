@@ -26,12 +26,19 @@ Challenge mode: solve with 0(1) constant memory.
 - A very simple solution is to walk the linked list until we find ourselves at a node that we've
   already visited.
 
-# Solution
+---
 
-The solution uses the approach of tracking visited nodes. The optimal solution
-implements an interesting "fast walker vs slow walker" approach which is also
-O(1) in memory. This is important because based on the topology of linked lists
-themselves, we're guaranteed that the "fast walker" will eventually lap the slow
-walker, thus telling us that there's a cycle. In the case where there IS no
-cycle, the fast walker gets to the end of the list quickly which tells us that
-tehre IS NO cycle.
+## Solution Analysis
+
+### 1. Standard Solution (`optimal_solution.py`)
+-   **Approach:** This solution uses a hash set to keep track of visited nodes. It iterates through the list, adding each node to the set. If a node is encountered that is already in the set, a cycle is detected.
+-   **Time Complexity:** `O(n)` - as we visit each of the n nodes at most once.
+-   **Space Complexity:** `O(n)` - as in the worst case, the hash set will store all n nodes.
+
+### 2. Alternative Solution (`solution.py`)
+-   **Approach:** This is another implementation of the hash set approach. It also iterates through the linked list, storing visited nodes in a set and returning `True` if a node is visited twice.
+-   **Time Complexity:** `O(n)` - For the same reasons as the standard solution.
+-   **Space Complexity:** `O(n)` - For the same reasons as the standard solution.
+
+### Trade-Offs
+Both provided solutions use the same underlying hash set strategy. They are easy to understand but fail to meet the challenge of solving the problem with O(1) constant memory. The truly optimal solution, which is not present in the files, would use the "Tortoise and Hare" (Floyd's Cycle-Finding) algorithm. That algorithm uses two pointers (a slow one and a fast one) and achieves the desired `O(1)` space complexity.

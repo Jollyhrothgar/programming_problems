@@ -18,7 +18,7 @@ A linear data structure where elements are not stored at contiguous memory locat
 linked using pointers. Each node contains data and a reference (or link) to the next node in the
 sequence.
 
--   **[Linked List Cycle Detection](./linked_list_cycle_leetcode_141/)**: An example of identifying
+-   **[Linked List Cycle Detection](./cs_problems/linked_list_cycle_leetcode_141/)**: An example of identifying
     cycles using a hash set to track visited nodes.
 
 ### Hash Sets
@@ -26,7 +26,7 @@ sequence.
 A data structure that stores a collection of unique items in an unordered fashion. It provides
 highly efficient (average O(1) time complexity) lookups, insertions, and deletions.
 
--   **[Linked List Cycle Detection](./linked_list_cycle_leetcode_141/)**: Demonstrates using a hash
+-   **[Linked List Cycle Detection](./cs_problems/linked_list_cycle_leetcode_141/)**: Demonstrates using a hash
     set to track visited nodes to detect a cycle.
 
 ---
@@ -36,9 +36,4 @@ highly efficient (average O(1) time complexity) lookups, insertions, and deletio
 ### Dynamic Programming & Memoization
 A method for solving complex problems by breaking them down into simpler, overlapping subproblems. Results of subproblems are stored (memoized) to avoid redundant calculations.
 
--   **[Fizz Buzz Sum](./fizz_buzz_sum/)**: A bottom-up dynamic programming approach to build a solution iteratively.
-
-### Two Pointers
-A pattern that uses two pointers to iterate through a data structure, often at different speeds, until they meet a certain condition.
-
--   **[Linked List Cycle Detection](./linked_list_cycle_leetcode_141/)**: The optimal solution for this problem uses a fast and slow pointer to detect a cycle in O(1) memory.
+-   **[Fizz Buzz Sum](./cs_problems/fizz_buzz_sum/)**: A bottom-up dynamic programming approach to build a solution iteratively.
