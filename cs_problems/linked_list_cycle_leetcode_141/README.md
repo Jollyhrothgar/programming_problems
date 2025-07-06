@@ -30,4 +30,8 @@ Challenge mode: solve with 0(1) constant memory.
 
 The solution uses the approach of tracking visited nodes. The optimal solution
 implements an interesting "fast walker vs slow walker" approach which is also
-O(1) in memory. This is important because based on the topology of linked lists themselves, we're guaranteed that the "fast walker" will eventually lap the slow walker, thus telling us that there's a cycle. In the case where there IS no cycle, the fast walker gets to the end of the list quickly which tells us that tehre IS NO cycle.
+O(1) in memory. This is important because based on the topology of linked lists
+themselves, we're guaranteed that the "fast walker" will eventually lap the slow
+walker, thus telling us that there's a cycle. In the case where there IS no
+cycle, the fast walker gets to the end of the list quickly which tells us that
+tehre IS NO cycle.
