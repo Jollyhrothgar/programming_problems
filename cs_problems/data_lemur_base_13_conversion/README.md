@@ -29,27 +29,25 @@ For example:
 - We'll assume up to a 5 digit base 13 number and add more precision as we
   discover issues.
 
-# Solution
+---
 
-## The Standard Algorithm: Division and Modulo
+## Solution Analysis
 
-The classic way to solve any base conversion problem is to work from right to left, finding the least significant digit first.
+### 1. Standard Solution (`solution.py`)
+-   **Approach:** This solution iterates from the largest possible power of 13 down to 0. In each step, it determines how many times that power of 13 fits into the number, which gives the digit for that place value. It subtracts that value from the number and continues. This approach requires pre-calculating or knowing the maximum number of digits required.
+-   **Time Complexity:** `O(log_13(n))` or `O(d)` where `d` is the number of digits in the base-13 representation. The loop runs a fixed number of times based on the assumed maximum number of digits.
+-   **Space Complexity:** `O(d)` to store the resulting string.
 
-Here's the logic:
+### 2. Optimal Solution (`optimal_solution.py`)
+-   **Approach:** The optimal solution uses the standard algorithm of repeated division and modulo. It repeatedly takes the number modulo 13 to get the rightmost digit and then divides the number by 13 to "shift" the digits to the right, until the number becomes 0. The digits are prepended to the result string.
+-   **Time Complexity:** `O(log_13(n))` or `O(d)` where `d` is the number of digits. Each division and modulo operation is constant time, and the number of operations is proportional to the number of digits.
+-   **Space Complexity:** `O(d)` to store the resulting string.
 
-1.  Take your number, `num`.
-2.  Calculate the remainder when you divide by 13 (`num % 13`). This remainder is your **right-most digit**.
-3.  Update your number by performing integer division (`num //= 13`). This effectively "removes" the digit you just found.
-4.  Repeat steps 2 and 3 until your number becomes 0.
-5.  Since you found the digits from right to left, you just need to reverse them to get the final answer.
-
-### Why This Algorithm Works: A Deeper Dive
-
-The magic of this method lies in two simple mathematical operators: **modulo (`%`)** and **floor division (`//`)**.
+Explanation:
 
 #### 1. Why `num % 13` Finds the Right-Most Digit
 
-The modulo operator gives you the remainder of a division. It works because, by definition, every place value _except_ the "ones" place is a multiple of the base.
+The modulo operator gives you the remainder of a division. It works because, by definition, every place value *except* the "ones" place is a multiple of the base.
 
 Consider the number **493** in base 10. We can write it as `(4 * 100) + (9 * 10) + 3`. When we do `493 % 10`, the `(4 * 100)` and `(9 * 10)` parts have a remainder of 0, leaving only the `3`.
 
@@ -57,10 +55,9 @@ The same is true for base 13. The number **493** is **"2BC"** in base 13, which 
 `(2 * 13²) + (11 * 13¹) + 12`
 
 When you calculate `493 % 13`:
-
-- `(2 * 13²) % 13` is `0`.
-- `(11 * 13¹) % 13` is `0`.
-- This leaves only the `12`, which is our right-most digit ("C").
+* `(2 * 13²) % 13` is `0`.
+* `(11 * 13¹) % 13` is `0`.
+* This leaves only the `12`, which is our right-most digit ("C").
 
 The modulo operator is a mathematical tool to isolate the value in the "ones" place for any given base.
 
@@ -70,4 +67,6 @@ The floor division operator (`//`) divides and then rounds down, effectively "ch
 
 When we calculate `493 // 13`, the result is `37`. This `37` represents the rest of the number: `(2 * 13¹) + 11`. We have successfully removed the "C" digit and can now repeat the process on `37` to find the next digit, "B".
 
-The `while` loop in the optimal solution uses these two operators together to cleanly deconstruct the number from right to left.
+
+### Trade-Offs
+The "standard" solution is less efficient and more complex than it needs to be. It assumes a fixed number of digits and iterates that many times, which can be inefficient if the number is small. The "optimal" solution is the idiomatic way to perform base conversion. It's more efficient as it only performs as many operations as are necessary, and it's more elegant and easier to understand.

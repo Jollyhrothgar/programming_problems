@@ -1,23 +1,37 @@
-# CS Practice Problems: A Conceptual Guide
+# Code Practice: A Curated Collection of Problems & Solutions
 
-This repository contains a collection of solutions to common computer science problems, organized by concept. Each problem includes a standard solution, an optimal solution, and a detailed analysis of the trade-offs between them.
+This repository contains a collection of programming problems, complete with standard and optimized solutions. It serves as a practical guide to understanding key computer science concepts and trade-offs in algorithm design.
 
-## Concepts and Problems
+Each problem is self-contained in its own directory and includes:
+- A clear problem description (`README.md`).
+- A standard or brute-force solution (`solution.py`).
+- An optimized solution (`optimal_solution.py`).
+- A detailed analysis of both approaches, including time and space complexity.
 
-### Dynamic Programming
+## Conceptual Guide
 
--   **[Fizz Buzz Sum](./cs_problems/fizz_buzz_sum/README.md)**
-    -   *Description:* A variation of the classic FizzBuzz problem that involves summing multiples of 3 or 5. This problem is used to introduce the concept of memoization and bottom-up dynamic programming.
-    -   *Concepts Illustrated:* Memoization, Tabulation (Bottom-Up DP).
+This section categorizes the problems by the primary computer science concepts they demonstrate.
+
+### Arrays
+
+- **[Merge Sorted Array (LeetCode 88)](./cs_problems/merge_sorted_array_leetcode_88/)**
+  - **Concept:** In-place merging of two sorted arrays.
+  - **Key Algorithm:** Three-pointer technique for efficient, O(1) space merging.
 
 ### Linked Lists
 
--   **[Linked List Cycle (LeetCode 141)](./cs_problems/linked_list_cycle_leetcode_141/README.md)**
-    -   *Description:* Determine if a linked list contains a cycle.
-    -   *Concepts Illustrated:* Hash Set for tracking visited nodes, Floyd's Cycle-Finding Algorithm (Tortoise and Hare).
+- **[Linked List Cycle (LeetCode 141)](./cs_problems/linked_list_cycle_leetcode_141/)**
+  - **Concept:** Cycle detection in a linked list.
+  - **Key Algorithm:** Floyd's "Tortoise and Hare" cycle-finding algorithm.
 
-### Arrays and Two Pointers
+### Dynamic Programming
 
--   **[Merge Sorted Array (LeetCode 88)](./cs_problems/merge_sorted_array_leetcode_88/README.md)**
-    -   *Description:* Merge two sorted arrays into a single sorted array, in-place.
-    -   *Concepts Illustrated:* In-place algorithms, three-pointer technique.
+- **[FizzBuzz Sum](./cs_problems/fizz_buzz_sum/)**
+  - **Concept:** Using tabulation (bottom-up DP) to optimize a summation problem.
+  - **Key Algorithm:** Building a memoization table to avoid redundant calculations.
+
+### Number Theory
+
+- **[Base 13 Conversion](./cs_problems/data_lemur_base_13_conversion/)**
+  - **Concept:** Converting a number from base-10 to a different base.
+  - **Key Algorithm:** Repeatedly using modulo and division to extract digits.
