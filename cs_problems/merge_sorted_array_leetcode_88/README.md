@@ -13,4 +13,9 @@ last n elements are set to 0 and should be ignored. nums2 has a length of n.
 
 # Thinking
 
+- The challenge of this problem is to use no additional memory to produce a final sorted array.
+- We know that nums1 and nums2 have been pre-sorted (in ascending order).
+- We'll keep the sorting schema (ascending).
+- There's a dumb N^2 solution we could use where we just push everything back until we're done.
+
 # Solution
