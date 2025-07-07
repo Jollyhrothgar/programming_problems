@@ -1,39 +1,23 @@
-# Computer Science Problem-Solving Guide
+# CS Practice Problems: A Conceptual Guide
 
-This repository contains a collection of solved programming problems, organized by computer science
-concepts to aid in studying for technical interviews.
+This repository contains a collection of solutions to common computer science problems, organized by concept. Each problem includes a standard solution, an optimal solution, and a detailed analysis of the trade-offs between them.
 
----
+## Concepts and Problems
 
-## Table of Contents
-* [Data Structures](#data-structures)
-* [Algorithmic Patterns](#algorithmic-patterns)
+### Dynamic Programming
 
----
-
-## Data Structures
+-   **[Fizz Buzz Sum](./cs_problems/fizz_buzz_sum/README.md)**
+    -   *Description:* A variation of the classic FizzBuzz problem that involves summing multiples of 3 or 5. This problem is used to introduce the concept of memoization and bottom-up dynamic programming.
+    -   *Concepts Illustrated:* Memoization, Tabulation (Bottom-Up DP).
 
 ### Linked Lists
-A linear data structure where elements are not stored at contiguous memory locations but are
-linked using pointers. Each node contains data and a reference (or link) to the next node in the
-sequence.
 
--   **[Linked List Cycle Detection](./cs_problems/linked_list_cycle_leetcode_141/)**: An example of identifying
-    cycles using a hash set to track visited nodes.
+-   **[Linked List Cycle (LeetCode 141)](./cs_problems/linked_list_cycle_leetcode_141/README.md)**
+    -   *Description:* Determine if a linked list contains a cycle.
+    -   *Concepts Illustrated:* Hash Set for tracking visited nodes, Floyd's Cycle-Finding Algorithm (Tortoise and Hare).
 
-### Hash Sets
+### Arrays and Two Pointers
 
-A data structure that stores a collection of unique items in an unordered fashion. It provides
-highly efficient (average O(1) time complexity) lookups, insertions, and deletions.
-
--   **[Linked List Cycle Detection](./cs_problems/linked_list_cycle_leetcode_141/)**: Demonstrates using a hash
-    set to track visited nodes to detect a cycle.
-
----
-
-## Algorithmic Patterns
-
-### Dynamic Programming & Memoization
-A method for solving complex problems by breaking them down into simpler, overlapping subproblems. Results of subproblems are stored (memoized) to avoid redundant calculations.
-
--   **[Fizz Buzz Sum](./cs_problems/fizz_buzz_sum/)**: A bottom-up dynamic programming approach to build a solution iteratively.
+-   **[Merge Sorted Array (LeetCode 88)](./cs_problems/merge_sorted_array_leetcode_88/README.md)**
+    -   *Description:* Merge two sorted arrays into a single sorted array, in-place.
+    -   *Concepts Illustrated:* In-place algorithms, three-pointer technique.
