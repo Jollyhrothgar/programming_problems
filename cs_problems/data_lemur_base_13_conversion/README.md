@@ -33,40 +33,15 @@ For example:
 
 ## Solution Analysis
 
-### 1. Standard Solution (`solution.py`)
--   **Approach:** This solution iterates from the largest possible power of 13 down to 0. In each step, it determines how many times that power of 13 fits into the number, which gives the digit for that place value. It subtracts that value from the number and continues. This approach requires pre-calculating or knowing the maximum number of digits required.
--   **Time Complexity:** `O(log_13(n))` or `O(d)` where `d` is the number of digits in the base-13 representation. The loop runs a fixed number of times based on the assumed maximum number of digits.
--   **Space Complexity:** `O(d)` to store the resulting string.
+### 1. User's Solution (`solution.py`)
+-   **Approach:** This solution iterates from a large, fixed power of 13 down to 0. For each power, it calculates how many times the corresponding place value fits into the remaining number. This determines the digit for that position. The number is then reduced by that amount, and the process continues. It builds the base-13 string from left to right.
+-   **Time Complexity:** `O(d_max)` where `d_max` is the fixed maximum number of digits (e.g., 10). The loop runs a constant number of times, regardless of the input number's size. This can be seen as `O(1)` if `d_max` is constant, but it's less efficient than an approach that adapts to the input size.
+-   **Space Complexity:** `O(d_max)` for the resulting string.
 
 ### 2. Optimal Solution (`optimal_solution.py`)
--   **Approach:** The optimal solution uses the standard algorithm of repeated division and modulo. It repeatedly takes the number modulo 13 to get the rightmost digit and then divides the number by 13 to "shift" the digits to the right, until the number becomes 0. The digits are prepended to the result string.
--   **Time Complexity:** `O(log_13(n))` or `O(d)` where `d` is the number of digits. Each division and modulo operation is constant time, and the number of operations is proportional to the number of digits.
+-   **Approach:** This solution uses the classic algorithm of repeated division and modulo. It finds the rightmost digit by taking the number `modulo 13`. It then "shifts" to the next digit by performing integer division of the number by 13. This process repeats until the number is 0. The digits are collected and prepended to build the final string.
+-   **Time Complexity:** `O(log_13(n))` or `O(d)`, where `d` is the actual number of digits in the base-13 representation of `n`. The number of loop iterations is proportional to the number of digits.
 -   **Space Complexity:** `O(d)` to store the resulting string.
 
-Explanation:
-
-#### 1. Why `num % 13` Finds the Right-Most Digit
-
-The modulo operator gives you the remainder of a division. It works because, by definition, every place value *except* the "ones" place is a multiple of the base.
-
-Consider the number **493** in base 10. We can write it as `(4 * 100) + (9 * 10) + 3`. When we do `493 % 10`, the `(4 * 100)` and `(9 * 10)` parts have a remainder of 0, leaving only the `3`.
-
-The same is true for base 13. The number **493** is **"2BC"** in base 13, which is:
-`(2 * 13²) + (11 * 13¹) + 12`
-
-When you calculate `493 % 13`:
-* `(2 * 13²) % 13` is `0`.
-* `(11 * 13¹) % 13` is `0`.
-* This leaves only the `12`, which is our right-most digit ("C").
-
-The modulo operator is a mathematical tool to isolate the value in the "ones" place for any given base.
-
-#### 2. Why `num //= 13` Moves to the Next Digit
-
-The floor division operator (`//`) divides and then rounds down, effectively "chopping off" the right-most digit you just found.
-
-When we calculate `493 // 13`, the result is `37`. This `37` represents the rest of the number: `(2 * 13¹) + 11`. We have successfully removed the "C" digit and can now repeat the process on `37` to find the next digit, "B".
-
-
 ### Trade-Offs
-The "standard" solution is less efficient and more complex than it needs to be. It assumes a fixed number of digits and iterates that many times, which can be inefficient if the number is small. The "optimal" solution is the idiomatic way to perform base conversion. It's more efficient as it only performs as many operations as are necessary, and it's more elegant and easier to understand.
+The user's solution is conceptually straightforward but has a few drawbacks. It assumes a maximum number of digits, which can be inefficient for small numbers and will fail for numbers that exceed this precision. It also involves more complex calculations within the loop. The optimal solution is the standard, most efficient method for base conversion. It's elegant, concise, and handles numbers of any size gracefully, making it the preferred approach.

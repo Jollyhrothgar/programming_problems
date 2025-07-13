@@ -14,10 +14,13 @@ Act as an expert software engineer and technical writer. Your goal is to create 
 
 ### Task 1: Document Individual Solutions
 For each problem subdirectory within `cs_problems/`:
-1.  **Analyze Solutions:** Read and understand the code in `solution.py` and, if it exists, `optimal_solution.py`.
-2.  **Identify Approaches:** Determine the algorithm, data structures, time complexity, and space complexity for each solution. Note the key differences between the standard and optimal approaches.
-3.  **Generate Documentation:** Create a new "Solution Analysis" section in Markdown format. Use the template provided below.
-4.  **Update README.md:** Read the existing `README.md` in the problem's directory. Preserve the "Question" and "Thinking" sections, but **replace** the old "Solution" section (if any) with your newly generated "Solution Analysis".
+1.  **Analyze Solutions:** Read and understand the code in `solution.py` and, if it exists, `optimal_solution.py`. The solution.py file contains the user's approach to the problem, you should read it with an eye towards helping the user understand what they did, and how to improve. The `optimal_solution.py` file contains an ideal solution. Here you should analyze and understand why it is an ideal solution, with an eye towards documenting it.
+2.  **Identify Approaches:** Determine the algorithm, data structures, time complexity, and space complexity for each solution. Note the key differences between the user's solution and optimal approaches.
+3.  **Generate Documentation:** Create a new "Solution Analysis" section in Markdown format. Use the template provided below. Do not overwrite previous sections in the document. In your "Solution Analysis", walk through the problems' concepts thoroughly and concisely providing a plain english description of the solutions, how they work and why they work.
+4.  **Update README.md:** Read the existing `README.md` in the problem's directory. Preserve the
+    "Question" and "Thinking" sections, but **append** "Solution Analysis" to the end. If "Solution
+    Analysis" already exists, review this section and add "Suggested Solution Analysis" section in
+    the case where you feel there are gaps in the original analysis. If sufficient, make no changs.
 
 ### Task 2: Generate Top-Level Conceptual Guide
 After all individual READMEs have been updated:
@@ -40,7 +43,7 @@ After all individual READMEs have been updated:
 
 ## Solution Analysis
 
-### 1. Standard Solution (`solution.py`)
+### 1. User's Solution (`solution.py`)
 -   **Approach:** A brief description of the algorithm used. For example, "This solution uses a hash set to keep track of visited nodes. It iterates through the list, adding each node to the set. If a node is encountered that is already in the set, a cycle is detected."
 -   **Time Complexity:** `O(n)` - Explain why (e.g., "as we visit each of the n nodes at most once").
 -   **Space Complexity:** `O(n)` - Explain why (e.g., "as in the worst case, the hash set will store all n nodes").

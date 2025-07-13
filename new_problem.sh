@@ -57,13 +57,13 @@ if [ "$is_leetcode_style" = true ]; then
   echo "Generating LeetCode style (class-based) templates..."
 
   cat <<'EOF' > "$PROBLEM_DIR/solution.py"
-"""A standard solution for the problem (LeetCode style)."""
+"""The user solution for the problem (LeetCode style)."""
 
 from typing import List
 
 class Solution:
   def solve(self, input_data):
-    # Your standard solution code here.
+    # Your solution code here.
     # Remember to use two-space indentation.
     pass
 EOF
@@ -84,7 +84,7 @@ EOF
 """A unified test suite for the LeetCode-style solutions."""
 
 import pytest
-from .solution import Solution as StandardSolution
+from .solution import Solution as UserSolution
 from .optimal_solution import Solution as OptimalSolution
 
 # A list of test cases: (input_data, expected_result)
@@ -99,7 +99,7 @@ test_ids = [
     "sample_case_2",
 ]
 
-@pytest.mark.parametrize("SolutionClass", [StandardSolution, OptimalSolution], ids=["standard", "optimal"])
+@pytest.mark.parametrize("SolutionClass", [UserSolution, OptimalSolution], ids=["user", "optimal"])
 @pytest.mark.parametrize("test_input, expected_output", test_data, ids=test_ids)
 def test_solve(SolutionClass, test_input, expected_output):
     """
@@ -114,12 +114,12 @@ else
   echo "Generating functional style templates..."
 
   cat <<'EOF' > "$PROBLEM_DIR/solution.py"
-"""A standard solution for the problem."""
+"""User solution for the problem."""
 
 from typing import List
 
 def solve(input_data):
-  # Your standard solution code here.
+  # Your solution code here.
   # Remember to use two-space indentation.
   pass
 EOF
@@ -139,7 +139,7 @@ EOF
 """A unified test suite for the functional solutions."""
 
 import pytest
-from .solution import solve as standard_solution
+from .solution import solve as user_solution
 from .optimal_solution import solve as optimal_solution
 
 # A list of test cases: (input_data, expected_result)
@@ -154,7 +154,7 @@ test_ids = [
     "sample_case_2",
 ]
 
-@pytest.mark.parametrize("solution_function", [standard_solution, optimal_solution], ids=["standard", "optimal"])
+@pytest.mark.parametrize("solution_function", [user_solution, optimal_solution], ids=["user", "optimal"])
 @pytest.mark.parametrize("test_input, expected_output", test_data, ids=test_ids)
 def test_solve(solution_function, test_input, expected_output):
     """

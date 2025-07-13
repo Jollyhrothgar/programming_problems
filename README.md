@@ -1,37 +1,25 @@
-# Code Practice: A Curated Collection of Problems & Solutions
+# Coding Practice Problems
 
-This repository contains a collection of programming problems, complete with standard and optimized solutions. It serves as a practical guide to understanding key computer science concepts and trade-offs in algorithm design.
-
-Each problem is self-contained in its own directory and includes:
-- A clear problem description (`README.md`).
-- A standard or brute-force solution (`solution.py`).
-- An optimized solution (`optimal_solution.py`).
-- A detailed analysis of both approaches, including time and space complexity.
+This repository contains a collection of solutions to various coding problems, implemented in Python. Each problem is in its own directory and includes the problem description, solutions, and analysis.
 
 ## Conceptual Guide
 
-This section categorizes the problems by the primary computer science concepts they demonstrate.
+This guide categorizes the problems by the primary computer science concepts they demonstrate.
 
-### Arrays
+### Arrays and Matrices
 
-- **[Merge Sorted Array (LeetCode 88)](./cs_problems/merge_sorted_array_leetcode_88/)**
-  - **Concept:** In-place merging of two sorted arrays.
-  - **Key Algorithm:** Three-pointer technique for efficient, O(1) space merging.
+-   **[Merge Sorted Array (LeetCode 88)](./cs_problems/merge_sorted_array_leetcode_88/)**: Demonstrates an efficient, in-place, three-pointer technique for merging two sorted arrays.
+-   **[Remove Element (LeetCode 27)](./cs_problems/leetcode_27_remove_element/)**: Showcases the two-pointer pattern for in-place array manipulation.
+-   **[Same Stripes](./cs_problems/data_lemur_same_stripes/)**: Involves matrix traversal to check for a specific pattern (diagonal stripes).
 
 ### Linked Lists
 
-- **[Linked List Cycle (LeetCode 141)](./cs_problems/linked_list_cycle_leetcode_141/)**
-  - **Concept:** Cycle detection in a linked list.
-  - **Key Algorithm:** Floyd's "Tortoise and Hare" cycle-finding algorithm.
+-   **[Linked List Cycle (LeetCode 141)](./cs_problems/linked_list_cycle_leetcode_141/)**: A classic problem that introduces Floyd's "Tortoise and the Hare" cycle-finding algorithm, a key technique for cycle detection in `O(1)` space.
 
 ### Dynamic Programming
 
-- **[FizzBuzz Sum](./cs_problems/fizz_buzz_sum/)**
-  - **Concept:** Using tabulation (bottom-up DP) to optimize a summation problem.
-  - **Key Algorithm:** Building a memoization table to avoid redundant calculations.
+-   **[Fizz Buzz Sum](./cs_problems/fizz_buzz_sum/)**: Explores memoization and tabulation (a bottom-up DP approach) to optimize a summation problem by caching intermediate results.
 
-### Number Theory
+### Mathematical and Bit Manipulation
 
-- **[Base 13 Conversion](./cs_problems/data_lemur_base_13_conversion/)**
-  - **Concept:** Converting a number from base-10 to a different base.
-  - **Key Algorithm:** Repeatedly using modulo and division to extract digits.
+-   **[Base 13 Conversion](./cs_problems/data_lemur_base_13_conversion/)**: Illustrates the standard algorithm for base conversion using repeated division and modulo operations.

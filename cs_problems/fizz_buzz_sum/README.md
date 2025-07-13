@@ -20,17 +20,19 @@ Because 3 + 5 + 6 + 9 = 23, our function would return 23.
 
 ---
 
-## Solution Analysis
+---
 
-### 1. Standard Solution (`solution.py`)
--   **Approach:** This solution iterates from 3 up to the target value. For each number, it checks if it's a multiple of 3 or 5 and, if so, adds it to a list of factors. The sum of this list is then returned. The results are memoized to avoid re-computation for the same target.
--   **Time Complexity:** `O(n)` - The loop runs from 3 to `n` (the target), so the time taken is directly proportional to the target value.
--   **Space Complexity:** `O(n)` - In the worst case, the `factors` list can grow to a size proportional to `n`.
+## Suggested Solution Analysis
+
+### 1. User's Solution (`solution.py`)
+-   **Approach:** This solution iterates from 3 up to the target number. For each number, it checks if it is a multiple of 3 or 5 (or both). If it is, the number is added to a list. Finally, it computes the sum of this list. The result for each target is stored in a `memory` dictionary (memoization) to avoid re-computation if the same target is requested again.
+-   **Time Complexity:** `O(n)` for the first call with a given `n`. The loop runs up to `n` times. For subsequent calls with the same `n`, the complexity is `O(1)` due to the cache hit.
+-   **Space Complexity:** `O(n)` in the worst case for the `factors` list, which can store a significant number of multiples. The `memory` cache also contributes to space complexity over multiple calls.
 
 ### 2. Optimal Solution (`optimal_solution.py`)
--   **Approach:** The optimal solution uses a bottom-up dynamic programming approach (tabulation). It builds a table (`memory`) storing the sum of multiples up to each number from 0 to the target. It computes the sum for a target `i` by taking the already computed sum for `i-1` and adding `i-1` to it if `i-1` is a multiple of 3 or 5. This avoids redundant calculations when the function is called with increasing targets.
--   **Time Complexity:** `O(n)` - Where `n` is the difference between the current target and the largest previously computed target. In the best case (a cache hit), it's `O(1)`.
--   **Space Complexity:** `O(n)` - The `memory` dictionary stores the sum for each number up to the target, leading to space usage proportional to `n`.
+-   **Approach:** This solution uses a more advanced dynamic programming technique called tabulation (a bottom-up approach). It builds a `memory` table that stores the cumulative sum of multiples up to each number. When called with a new `target`, it starts from the highest number it has already calculated (`last_known_target`) and iteratively computes the sum up to the new `target`. This avoids re-evaluating numbers that have already been processed in previous calls for smaller targets.
+-   **Time Complexity:** `O(n - k)`, where `n` is the new target and `k` is the `last_known_target`. If the function is called sequentially with increasing targets (e.g., 10, 11, 12), each subsequent call is nearly `O(1)`. The initial call is `O(n)`.
+-   **Space Complexity:** `O(n)` because the `memory` dictionary stores the sum for every number up to the maximum target requested.
 
 ### Trade-Offs
-The standard solution is straightforward but inefficient if called multiple times, as it re-computes the entire sum each time for a new target. The optimal solution is much more efficient for sequential or repeated calls with increasing targets because it leverages past results. However, it has a higher memory footprint as it stores the intermediate sums for all numbers up to the target.
+The user's solution is a good attempt at optimization with memoization, but it is inefficient for sequential calls with increasing targets (e.g., `fizz_buzz_sum(10)` then `fizz_buzz_sum(11)`), as it re-computes the entire list of factors each time. The optimal solution is significantly more efficient for this sequential pattern because it builds upon its previous work. However, the optimal solution's memory usage is higher as it stores the sum for every intermediate value, whereas the user's solution only stores the final sum for each target in its cache.

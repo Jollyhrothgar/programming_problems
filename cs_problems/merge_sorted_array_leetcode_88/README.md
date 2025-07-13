@@ -20,17 +20,19 @@ last n elements are set to 0 and should be ignored. nums2 has a length of n.
 
 ---
 
-## Solution Analysis
+---
 
-### 1. Standard Solution (`solution_1.py`)
--   **Approach:** This solution takes a simple, yet inefficient approach. It slices the meaningful elements from `nums1` (the first `m` elements), concatenates `nums2`, sorts the resulting new list, and then copies the elements back into `nums1`.
--   **Time Complexity:** `O((m+n) log(m+n))` - The dominant operation is sorting the combined list of `m+n` elements.
--   **Space Complexity:** `O(m+n)` - An entirely new list is created in memory to hold the combined elements before sorting.
+## Suggested Solution Analysis
+
+### 1. User's Solution (`solution_1.py`)
+-   **Approach:** This solution takes a straightforward but inefficient approach. It first creates a new list by concatenating the significant elements of `nums1` (the first `m` elements) and all of `nums2`. It then sorts this new, combined list. Finally, it iterates through the sorted list and copies its elements back into the original `nums1` array.
+-   **Time Complexity:** `O((m+n) log(m+n))`. The dominant operation is the sort function called on the combined list of `m+n` elements.
+-   **Space Complexity:** `O(m+n)`. A new list is created to hold all `m+n` elements, which requires memory proportional to the total number of elements.
 
 ### 2. Optimal Solution (`optimal_solution_1.py`)
--   **Approach:** The optimal solution uses a three-pointer, in-place merge strategy. It starts from the end of both arrays and the end of the `nums1` buffer. It compares the elements at the pointers of `nums1` and `nums2` and places the larger of the two at the end of `nums1`, moving the corresponding pointers backward. This avoids overwriting elements in `nums1` that haven't been compared yet.
--   **Time Complexity:** `O(m+n)` - Each element from `nums1` and `nums2` is visited and compared exactly once.
--   **Space Complexity:** `O(1)` - The merge operation is done in-place, using only a few pointers for tracking, thus requiring no extra space.
+-   **Approach:** The optimal solution uses a clever, in-place, three-pointer technique. It works backward from the end of the arrays. One pointer (`p1`) tracks the last valid element of `nums1`, another (`p2`) tracks the last element of `nums2`, and a third (`p_write`) tracks the position in `nums1` where the next largest element should be written (starting from the very end). By comparing `nums1[p1]` and `nums2[p2]` and placing the larger one at `nums1[p_write]`, it correctly merges the arrays without needing extra space and without overwriting un-inspected elements.
+-   **Time Complexity:** `O(m+n)`. Each element is examined and placed exactly once, resulting in a linear runtime.
+-   **Space Complexity:** `O(1)`. The merge is performed in-place within the `nums1` array, using only a few pointers. This is the most significant advantage.
 
 ### Trade-Offs
-The standard solution is very easy to write and understand, but it's highly inefficient in terms of both time and space, failing to meet the implicit constraints of a good solution for this kind of problem. The optimal solution is more complex to reason about but is significantly more performant, using constant extra space, which is crucial for large datasets.
+The user's solution is simple to understand but fails to meet the typical constraints of this problem, which usually imply an in-place, efficient solution. Its high space and time complexity make it impractical for large inputs. The optimal solution is the standard, accepted way to solve this problem. It is significantly more efficient and demonstrates a strong understanding of array manipulation and in-place algorithms, which is often what interviewers are looking for.
